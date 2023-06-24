@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Категория</h1>
+                    <h1 class="m-0">Продукты</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -28,9 +28,9 @@
                     <div class="card">
                         <div class="card-header d-flex">
                             <div class="mr-3">
-                                <a href="{{ route('category.edit', $category->id)}}" class="btn btn-primary">Редактировать</a>
+                                <a href="{{ route('product.edit', $product->id)}}" class="btn btn-primary">Редактировать</a>
                             </div>
-                        <form action="{{ route('category.delete', $category->id) }}" method="post">
+                        <form action="{{ route('product.delete', $product->id) }}" method="post">
                             @csrf
                             @method('delete')
                             <input type="submit" class="btn btn-danger" value="Удалить">
@@ -43,11 +43,11 @@
 
                                     <tr>
                                         <td>ID</td>
-                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $product->id }}</td>
                                     </tr>
                                     <tr>
                                         <td>Наименование</td>
-                                        <td>{{ $category->title }}</td>
+                                        <td>{{ $product->title }}</td>
                                     </tr>
 
                                 </tbody>

@@ -42,8 +42,6 @@
                     <div class="form-group">
                         <input type="text" name="count" class="form-control" placeholder="Количество на складе">
                     </div>
-                    <div class="form-group">
-
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="custom-file">
