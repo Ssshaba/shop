@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreRequest;
 use App\Models\Color;
+use App\Models\Tag;
 use App\Models\ColorProduct;
 use App\Models\Product;
 use App\Models\ProductTag;
