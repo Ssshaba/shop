@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreRequest;
 use App\Models\Color;
+use App\Models\ProductImage;
 use App\Models\Tag;
 use App\Models\ColorProduct;
 use App\Models\Product;
@@ -18,11 +19,12 @@ class StoreController extends Controller
     {
         $data = $request->validated();
 
+        $productImages = $data['product_images'];
         $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
 
         $tagsIds = $data['tags'];
         $colorsIds = $data['colors'];
-        unset($data['tags'], $data['colors']);
+        unset($data['tags'], $data['colors'], $data['product_images']);
 
         $product = Product::firstOrCreate([
             'title' => $data['title'],
@@ -41,6 +43,19 @@ class StoreController extends Controller
                 'color_id' => $colorsId,
             ]);
         }
+        foreach ($productImages as $productImage) {
+
+            $currenImages = ProductImage::where('product_id', $product->id)->get();
+
+            if (count($currenImages) > 3) continue;
+            $filePath = Storage::disk('public')->put('/images', $productImage);
+            ProductImage::create([
+               'product_id' => $product->id,
+               'file_path' => $filePath,
+            ]);
+    }
+
+
         return redirect()->route('product.index');
     }
 }
